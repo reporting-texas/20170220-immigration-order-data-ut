@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400, 700" rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+  	{{ url_base }}<br>
+    <p>{% include "partials/iran.svg" %} Iran</p>
+    <p>{% include "partials/iraq.svg" %} Iraq</p>
+    <p>{% include "partials/libya.svg" %} Libya</p>
+    <p>{% include "partials/syria.svg" %} Syria</p>
+    <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
+    <script>
+    var pymChild = new pym.Child();
+    </script>
+  </body>
+</html>
