@@ -33,11 +33,30 @@ module.exports = function(grunt) {
       }
     },
 
-    // watch for changes in less/js
+
+    // Squish all that js into one file
+    uglify: {
+      options: {
+        sourceMap: true
+      },
+      prod: {
+        files: {
+          'dist/scripts.js': [
+            'src/js/main.js'
+          ]
+        }
+      }
+    },
+
+    // watch for changes in js, njk
     watch: {
       markup: {
         files: ['src/njk/**/*.njk', 'src/njk/index.html'],
         tasks: ['nunjucks']
+      },
+      js: {
+        files: ['src/js/**.js'],
+        tasks: ['uglify']
       }
     }
 
@@ -45,9 +64,10 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-nunjucks-2-html');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // default tasks
-  var default_tasks = ['nunjucks', 'watch'];
+  var default_tasks = ['uglify', 'nunjucks', 'watch'];
 
   grunt.registerTask('default', default_tasks);
 
