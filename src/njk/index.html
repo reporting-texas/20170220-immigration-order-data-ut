@@ -9,17 +9,73 @@
   </head>
   <body>
 
-  <h2 style="margin:0;">Hammerhed Here</h2>
-  <p style="margin:0;">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum. Lorem ipsum Lorem ipsum Lorem ipsum.</p>
+    <div class="data-section" id="countries">
+      <h2 style="margin:0;">Hammerhed Here</h2>
+      <p style="margin:0;">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum. Lorem ipsum Lorem ipsum Lorem ipsum.</p>
 
+      <div class="bar-wrapper">
+        <div class="row">
+          <div class="c g4">
+            <p style="margin-top: -2px;">
+              {% include "partials/iran.svg" %} Iran: 99
+            </p>
+          </div>
+          <div class="c g4-3">
+            <div class="bar">
+              <div class="bar-inner" style="width: 80%;"></div>
+            </div>
+          </div>
+        </div>
 
+        <div class="row">
+          <div class="c g4">
+            <p style="margin-top: -2px;">
+              {% include "partials/iraq.svg" %} Iraq: 99
+            </p>
+          </div>
+          <div class="c g4-3">
+            <div class="bar">
+              <div class="bar-inner" style="width: 10%;"></div>
+            </div>
+          </div>
+        </div>
 
-  	{{ url_base }}<br>
-    <p>{% include "partials/iran.svg" %} Iran</p>
-    <p>{% include "partials/iraq.svg" %} Iraq</p>
-    <p>{% include "partials/libya.svg" %} Libya</p>
-    <p>{% include "partials/syria.svg" %} Syria</p>
-    <script src="https://pym.nprapps.org/pym.v1.min.js"></script>
+        <div class="row">
+          <div class="c g4">
+            <p style="margin-top: -2px;">
+              {% include "partials/libya.svg" %} Libya: 99
+            </p>
+          </div>
+          <div class="c g4-3">
+            <div class="bar">
+              <div class="bar-inner" style="width: 2%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="c g4">
+            <p style="margin-top: -2px;">
+              {% include "partials/syria.svg" %} Syria: 99
+            </p>
+          </div>
+          <div class="c g4-3">
+            <div class="bar">
+              <div class="bar-inner" style="width: 1%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <p><a class="navigate navigate-back" data-div-id="countries">&larr;</a></p>
+          <p><a class="navigate navigate-forward" data-div-id="schools">Next: blerp blerp &rarr;</a></p>
+        </div>
+
+      </div>
+    </div>
+
+    <p class="source">Source: {{ source }}</p>
+  
     <script src="scripts.js"></script>
   </body>
 </html>

@@ -1,3 +1,6 @@
+@rt-orange: #f66a2c;
+@light-gray: #dfdfdf;
+
 *, *:after, *:before {
   box-sizing: border-box;
 }
@@ -14,6 +17,7 @@ body {
   font-family: Montserrat, 'Helvetica Neue', Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: white;
 }
 
 p {
@@ -23,30 +27,34 @@ p {
 a {
   color: #414141;
   font-weight: bold;
+  &:hover {
+    color: @rt-orange;
+  }
 }
 
-a:hover {
-  color: #f66a2c;
-}
 
 .row {
   display: block;
   width: auto;
   min-height: 1px;
+  &:after {
+    content: "";
+    display: table;
+    clear: both;    
+  }
+  .c {
+    float: left;  
+  }
 }
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.row .c {
-  float: left;
-}
-
-table, .g2, .g3, .g3-2, .m2, .m3, .m3-2 {
+table, .g2, .g3, .g3-2, .g4, .g4-3, .m2, .m3, .m3-2 {
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .g4-3 {
+    margin: -10px 0 25px 0;
+  }
 }
 
 @media (min-width: 768px) {
@@ -66,6 +74,14 @@ table, .g2, .g3, .g3-2, .m2, .m3, .m3-2 {
     width: 66.66%;
   }
 
+  .g4 {
+    width: 25%;
+  }
+
+  .g4-3 {
+    width: 75%;
+  }
+
   .m3 {
     margin-left: 33.33%;
   }
@@ -75,10 +91,33 @@ table, .g2, .g3, .g3-2, .m2, .m3, .m3-2 {
   }
 }
 
-
-div.bar {
-  height: ;
+div.bar-wrapper {
+  margin-top: 20px;
 }
 
+div.bar {
+  height: 20px;
+  background-color: @light-gray;
+  .bar-inner {
+    background-color: @rt-orange;
+    height: 100%;
+  }
+}
 
+p.source {
+  float: right;
+  font-size: 14px;
+  color: #aaa;
+  font-style: italic;
+}
 
+a.navigate {
+  text-decoration: underline;
+  cursor: pointer;
+  &.navigate-forward {
+    float: right;
+  }
+  &.navigate-back {
+    float: left;
+  }
+}

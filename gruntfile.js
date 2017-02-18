@@ -57,6 +57,7 @@ module.exports = function(grunt) {
       prod: {
         files: {
           'dist/scripts.js': [
+            'node_modules/pym.js/dist/pym.v1.js',
             'src/js/main.js'
           ]
         }
