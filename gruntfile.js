@@ -33,6 +33,21 @@ module.exports = function(grunt) {
       }
     },
 
+    // Transpile LESS
+    less: {
+      options: {
+        sourceMap: true,
+      },
+      prod: {
+        options: {
+          compress: true,
+          cleancss: false
+        },
+        files: {
+          "dist/style.css": ["src/less/style.less"]
+        }
+      }
+    },
 
     // Squish all that js into one file
     uglify: {
@@ -57,6 +72,10 @@ module.exports = function(grunt) {
       js: {
         files: ['src/js/**.js'],
         tasks: ['uglify']
+      },
+      less: {
+        files: ['src/less/**.less'],
+        tasks: ['less']
       }
     }
 
@@ -65,9 +84,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-nunjucks-2-html');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-less');
 
   // default tasks
-  var default_tasks = ['uglify', 'nunjucks', 'watch'];
+  var default_tasks = ['uglify', 'less', 'nunjucks', 'watch'];
 
   grunt.registerTask('default', default_tasks);
 
