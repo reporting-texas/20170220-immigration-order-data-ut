@@ -91,6 +91,14 @@ table, .g2, .g3, .g3-2, .g4, .g4-3, .m2, .m3, .m3-2 {
   }
 }
 
+div.data-section-wrapper {
+  margin-bottom: 40px;
+}
+
+.ghost {
+  display: none;
+}
+
 div.bar-wrapper {
   margin-top: 20px;
 }
@@ -105,15 +113,21 @@ div.bar {
 }
 
 p.source {
-  float: right;
-  font-size: 14px;
+  text-align: right;
+  font-size: 12px;
   color: #aaa;
   font-style: italic;
 }
 
-a.navigate {
-  text-decoration: underline;
+span.navigate {
   cursor: pointer;
+  background-color: #eee;
+  padding: 4px;
+  color: @rt-orange;
+  font-weight: bold;
+  &:hover {
+    background-color: @light-gray;
+  }
   &.navigate-forward {
     float: right;
   }

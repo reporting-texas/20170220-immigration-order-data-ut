@@ -4,7 +4,7 @@
   var pymChild = new pym.Child();
 
   var sections = document.querySelectorAll('div.data-section');
-  var navigate = document.querySelectorAll('a.navigate');
+  var navigate = document.querySelectorAll('span.navigate');
 
   function showHide(target_div) {
     for (var i=0; i<sections.length; i++) {

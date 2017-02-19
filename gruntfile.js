@@ -3,21 +3,28 @@ var fs = require('fs');
 module.exports = function(grunt) {
   'use strict';
 
-  // path to data file to be consumed by nunjucks templates
-  var data_for_nunjucks = grunt.file.readJSON('src/data.json');
-
-  var url_base_path = 'https://reporting-texas.github.io/20170220-immigration-order-data-ut/';
-
   grunt.initConfig({
 
     // bake nunjucks templates to flat HTML
     // ref: https://www.npmjs.com/package/grunt-nunjucks-2-html
     nunjucks: {
       options: {
-        data: data_for_nunjucks,
+        data: grunt.file.readJSON('src/data.json'),
         paths: 'src/njk',
         configureEnvironment: function(env, nunjucks) {
-          env.addGlobal('url_base', url_base_path);
+          env.addFilter('navigate', function(data_arr, target_index, direction) {
+            if (target_index > -1 && target_index < data_arr.length) {
+              if (direction === 'prev') {
+                return '<p><span class="navigate navigate-back" data-div-id="' + data_arr[target_index].series_name + '">&larr;</span></p>';  
+              } else if (direction === 'next') {
+                return '<p><span class="navigate navigate-forward" data-div-id="' + data_arr[target_index].series_name + '">Next: ' + data_arr[target_index].hed + ' &rarr;</span></p>';
+              } else {
+                return '';
+              }
+            } else {
+              return '';
+            }
+          });
         }
       },
       dev: {

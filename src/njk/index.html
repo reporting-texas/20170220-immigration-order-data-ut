@@ -9,72 +9,43 @@
   </head>
   <body>
 
-    <div class="data-section" id="countries">
-      <h2 style="margin:0;">Hammerhed Here</h2>
-      <p style="margin:0;">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum. Lorem ipsum Lorem ipsum Lorem ipsum.</p>
+    <div class="data-section-wrapper">
 
-      <div class="bar-wrapper">
-        <div class="row">
-          <div class="c g4">
-            <p style="margin-top: -2px;">
-              {% include "partials/iran.svg" %} Iran: 99
-            </p>
-          </div>
-          <div class="c g4-3">
-            <div class="bar">
-              <div class="bar-inner" style="width: 80%;"></div>
+      {% for datum in eo %}
+      <div class="data-section{% if not loop.first %} ghost{% endif %}" id="{{ datum.series_name }}">
+        <h2 style="margin:0;">{{ datum.hed }}</h2>
+        <p style="margin:0;">{{ datum.chatter }}</p>
+
+        <div class="bar-wrapper">
+          {% for row in datum.data %}
+          <div class="row">
+            <div class="c g4">
+              <p style="margin-top: -2px;">
+              {% if datum.series_name === "countries" %}
+                  {% include "partials/" + row.label|lower + ".svg" %}
+              {% endif %}
+                {{ row.label }}: {{ row.number }}
+              </p>
+            </div>
+            <div class="c g4-3">
+              <div class="bar">
+                <div class="bar-inner" style="width: {{ (row.number / total) * 100 }}%;"></div>
+              </div>
             </div>
           </div>
+          {% endfor %}
         </div>
-
         <div class="row">
-          <div class="c g4">
-            <p style="margin-top: -2px;">
-              {% include "partials/iraq.svg" %} Iraq: 99
-            </p>
-          </div>
-          <div class="c g4-3">
-            <div class="bar">
-              <div class="bar-inner" style="width: 10%;"></div>
-            </div>
-          </div>
+          {{ eo|navigate(loop.index0 - 1, 'prev')|safe }}
+          {{ eo|navigate(loop.index0 + 1, 'next')|safe }}
         </div>
-
-        <div class="row">
-          <div class="c g4">
-            <p style="margin-top: -2px;">
-              {% include "partials/libya.svg" %} Libya: 99
-            </p>
-          </div>
-          <div class="c g4-3">
-            <div class="bar">
-              <div class="bar-inner" style="width: 2%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="c g4">
-            <p style="margin-top: -2px;">
-              {% include "partials/syria.svg" %} Syria: 99
-            </p>
-          </div>
-          <div class="c g4-3">
-            <div class="bar">
-              <div class="bar-inner" style="width: 1%;"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <p><a class="navigate navigate-back" data-div-id="countries">&larr;</a></p>
-          <p><a class="navigate navigate-forward" data-div-id="schools">Next: blerp blerp &rarr;</a></p>
-        </div>
-
       </div>
+      {% endfor %}
+
     </div>
 
     <p class="source">Source: {{ source }}</p>
+    <p class="source">Credits: {% for human in credits %}<a href="{{ human.link }}" target="_blank">{{ human.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
   
     <script src="scripts.js"></script>
   </body>
