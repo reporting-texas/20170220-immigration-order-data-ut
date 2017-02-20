@@ -12,7 +12,7 @@
     <div class="data-section-wrapper">
 
       {% for datum in eo %}
-      <div class="data-section{% if not loop.first %} ghost{% endif %}" id="{{ datum.series_name }}">
+      <div class="data-section" id="{{ datum.series_name }}"{% if not loop.first %}  style="display:none;"{% endif %}>
         <h2 style="margin:0;">{{ datum.hed }}</h2>
         <p style="margin:0;">{{ datum.chatter }}</p>
 
@@ -20,9 +20,11 @@
           {% for row in datum.data %}
           <div class="row">
             <div class="c g4">
-              <p style="margin-top: -2px;">
               {% if datum.series_name === "countries" %}
-                  {% include "partials/" + row.label|lower + ".svg" %}
+              <p style="margin-top: -2px;">
+              {% include "partials/" + row.label|lower + ".svg" %}
+              {% else %}
+              <p style="margin: 0;">
               {% endif %}
                 {{ row.label }}: {{ row.number }}
               </p>
@@ -45,7 +47,7 @@
     </div>
 
     <p class="source">Source: {{ source }}</p>
-    <p class="source">Credits: {% for human in credits %}<a href="{{ human.link }}" target="_blank">{{ human.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+    <p class="source">Reporting by {% for human in credits %}<a href="{{ human.link }}" target="_blank">{{ human.name }}</a>{% if not loop.last %}{% if loop.revindex == credits|length %} and {% else %}, {% endif %}{% endif %}{% endfor %}</p>
   
     <script src="scripts.js"></script>
   </body>
