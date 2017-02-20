@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400, 700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
@@ -13,7 +13,7 @@
 
       {% for datum in eo %}
       <div class="data-section" id="{{ datum.series_name }}"{% if not loop.first %}  style="display:none;"{% endif %}>
-        <h2 style="margin:0;">{{ datum.hed }}</h2>
+        <h2 style="margin:0;">{{ datum.display_hed }}</h2>
         <p style="margin:0;">{{ datum.chatter }}</p>
 
         <div class="bar-wrapper">
@@ -26,7 +26,7 @@
               {% else %}
               <p style="margin: 0;">
               {% endif %}
-                {{ row.label }}: {{ row.number }}
+                <b>{{ row.label }}</b>: {{ row.number }}
               </p>
             </div>
             <div class="c g4-3">
@@ -47,7 +47,7 @@
     </div>
 
     <p class="source">Source: {{ source }}</p>
-    <p class="source">Reporting by {% for human in credits %}<a href="{{ human.link }}" target="_blank">{{ human.name }}</a>{% if not loop.last %}{% if loop.revindex == credits|length %} and {% else %}, {% endif %}{% endif %}{% endfor %}</p>
+    <p class="source">Reporting by {% for human in credits %}{% if human.link %}<a href="{{ human.link }}" target="_blank">{% endif %}{{ human.name }}{% if human.link %}</a>{% endif %}{% if not loop.last %}{% if loop.revindex == credits|length %} and {% else %}, {% endif %}{% endif %}{% endfor %}</p>
   
     <script src="scripts.js"></script>
   </body>
